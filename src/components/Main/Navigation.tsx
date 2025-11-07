@@ -4,7 +4,7 @@ import {
     FaArrowLeftLong as arrowLeft,
     FaArrowRight as arrowRight,
   } from "react-icons/fa6";
-import { LuHome as home } from "react-icons/lu";
+import { FaHome as home } from "react-icons/fa";
 
 interface INav {
     actual: number;

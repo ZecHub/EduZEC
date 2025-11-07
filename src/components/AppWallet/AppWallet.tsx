@@ -1,4 +1,4 @@
-import { useEffect, createContext, useReducer } from 'react'
+import { createContext, useReducer } from 'react'
 import { WebWallet, WalletSummary } from '@webzjs/webz-wallet';
 import { Receive } from './Receive'
 
@@ -74,7 +74,7 @@ export const WalletContext = createContext<{
 }>({ state: initialState, dispatch: () => { } });
 
 const AppWallet = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [_state, _dispatch] = useReducer(reducer, initialState);
 
 /*   useEffect(() => {
     init(state, dispatch)

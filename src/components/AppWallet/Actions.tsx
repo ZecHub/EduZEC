@@ -5,7 +5,7 @@ import { State, Action } from './AppWallet';
 import { MAINNET_LIGHTWALLETD_PROXY } from '../../utils/constants';
 
 
-export async function init(state: State, dispatch: React.Dispatch<Action>) {
+export async function init(_state: State, dispatch: React.Dispatch<Action>) {
   await initWebzWallet();
   await initWebzKeys();
 
@@ -17,7 +17,7 @@ export async function init(state: State, dispatch: React.Dispatch<Action>) {
     console.info('Saved wallet detected. Restoring wallet from storage');
     wallet = new WebWallet('main', MAINNET_LIGHTWALLETD_PROXY, 1, bytes);
     console.info('also restoring any cached seeds');
-    let seeds = await get('seeds');
+    const seeds = await get('seeds');
     if (seeds) {
       dispatch({ type: 'set-account-seeds', payload: seeds });
     }
@@ -30,11 +30,11 @@ export async function init(state: State, dispatch: React.Dispatch<Action>) {
     type: 'set-web-wallet',
     payload: wallet,
   });
-  let summary = await wallet.get_wallet_summary();
+  const summary = await wallet.get_wallet_summary();
   if (summary) {
     dispatch({ type: 'set-summary', payload: summary });
   }
-  let chainHeight = await wallet.get_latest_block();
+  const chainHeight = await wallet.get_latest_block();
   if (chainHeight) {
     dispatch({ type: 'set-chain-height', payload: chainHeight });
   }
@@ -54,7 +54,7 @@ export async function addNewAccount(
   seedPhrase: string,
   birthdayHeight: number,
 ) {
-  let account_id =
+  const account_id =
     (await state.webWallet?.create_account(seedPhrase, 0, birthdayHeight)) || 0;
   dispatch({ type: 'add-account-seed', payload: [account_id, seedPhrase] });
   dispatch({ type: 'set-active-account', payload: account_id });
@@ -131,7 +131,7 @@ export async function triggerRescan(
 
 export async function triggerTransfer(
   state: State,
-  dispatch: React.Dispatch<Action>,
+  _dispatch: React.Dispatch<Action>,
   toAddress: string,
   amount: bigint,
 ) {
@@ -168,7 +168,7 @@ export async function triggerTransfer(
 
 export async function flushDbToStore(
   state: State,
-  dispatch: React.Dispatch<Action>,
+  _dispatch: React.Dispatch<Action>,
 ) {
   if (!state.webWallet) {
     console.error('Wallet not initialized');
@@ -183,7 +183,7 @@ export async function flushDbToStore(
   console.info('Seeds saved to storage');
 }
 
-export async function clearStore(dispatch: React.Dispatch<Action>) {
+export async function clearStore(_dispatch: React.Dispatch<Action>) {
   console.info('Clearing wallet from IndexDb store');
   await set('wallet', undefined);
   console.info('Wallet cleared from storage');
