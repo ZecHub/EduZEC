@@ -65,7 +65,7 @@ const App = () => {
         />
       ) : (
         <div
-          className={`flex flex-col w-screen h-screen ${isLoading ? "hidden" : ""}`}
+          className={`flex flex-col w-full h-full ${isLoading ? "hidden" : ""}`}
 
         >
           <div

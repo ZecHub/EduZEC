@@ -31,7 +31,7 @@ const PageGeneral = ({ id, data }: IProf) => {
             }}
           >
             <div
-              className={`w-full f text-center  ${
+              className={`w-full f text-justify text-xs  ${
                 id === 4 ? "px-40" : "px-20"
               }`}
             >

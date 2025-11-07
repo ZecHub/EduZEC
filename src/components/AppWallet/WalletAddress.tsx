@@ -3,7 +3,7 @@ import UnifiedAddressVisualizer from "@/components/AddressParser/UnifiedAddressV
 export default function WalletAddress() {
   return (
     <div className="w-full h-full overflow-y-auto p-2 sm:p-6">
-      <UnifiedAddressVisualizer />
+      {/* <UnifiedAddressVisualizer /> */}
     </div>
   );
 }
